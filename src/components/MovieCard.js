@@ -12,7 +12,7 @@ class MovieCard extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('get state from props')
+    // console.log('get state from props')
     if(props.genre === "horror") {
       return {
         checked: true,
@@ -36,11 +36,11 @@ class MovieCard extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('I will unmount')
+    // console.log('I will unmount')
   }
   
   render() {
-    const { id, title, year, image, overview, deleteMovie } = this.props
+    const { id, title, year, image, overview, poster_path, deleteMovie } = this.props
     return <div className='movie-container'>   
         <div className='favourite-container'>
             <button onClick={this.handleCheck} className='favourite-button'>
@@ -53,11 +53,26 @@ class MovieCard extends React.Component {
       <h1>{title}</h1>
       <div>{year}</div>
       <div className='overview-container'>
-        <img className='overview-img' src={image} alt='Movie' />
+        <img className='overview-img' src={`https://image.tmdb.org/t/p/original${poster_path}`} alt='Movie' />
         <p>{overview}</p>
       </div>
+      <Genres />
     </div>
     }
+}
+
+class Genres extends React.Component {
+  render(){
+    return (
+      <div>
+        <p>Acción</p>
+      </div>
+    );
+  }
+}
+
+class Genre extends React.Component {
+
 }
 
 MovieCard.defaultProps = {
